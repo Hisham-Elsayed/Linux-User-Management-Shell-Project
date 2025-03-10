@@ -1,4 +1,4 @@
-# User Management System
+# Linux User Management System
 
 ## Overview
 This Bash script provides a user-friendly command-line interface for managing Linux system users and groups. It allows system administrators to perform common tasks such as adding, deleting, and modifying users and groups with ease.
@@ -24,19 +24,19 @@ This Bash script provides a user-friendly command-line interface for managing Li
 
 ## Installation
 Clone the repository and navigate to the project directory:
-
+```sh
 git clone <your-repo-link>
 cd <repo-directory>
 ```
 
 Make the script executable:
-
+```sh
 chmod +x user_manager.sh
 ```
 
 ## Usage
 Run the script with:
-
+```sh
 ./user_manager.sh
 ```
 Follow the interactive menu to manage users and groups.
@@ -69,5 +69,4 @@ R -> Reset User's Password
 C -> Check if User Exists
 E -> Exit
 ```
-
 
