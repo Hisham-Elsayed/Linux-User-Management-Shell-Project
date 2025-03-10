@@ -85,13 +85,40 @@ check_user()
 fi
 }
 
+#** Functions for managing user groups **
 
+add_group() {
+    echo "Enter group name:"
+    read groupname
+    sudo groupadd "$groupname"
+}
+
+add_user_to_group() {
+    echo "Enter username:"
+    read  username
+    echo "Enter group name:"
+    read  groupname
+    sudo usermod -aG "$groupname" "$username"
+}
+
+list_groups()
+{
+	echo "Listing Groups"
+	cut -d: -f1 /etc/group
+}
+
+delete_group()
+{
+	echo "Please enter group name you want to delete"
+	read groupname
+	sudo groupdel "$groupname"
+}
 
 # ************************************************************ Main Menu ***************************************************************
 
-while [ 1 ]; do
+while true; do
         echo "Choose from the following options"
-        echo "A -> Add User, D -> Delete User, L -> List Users, R -> Reset User's Password, C -> Check User exists or not, E -> Exit:"
+        echo "A -> Add User, G -> Add Group, B -> Add User to Group, D -> Delete User, H -> List Groups, F -> Delete Group  L -> List Users, R -> Reset User's Password, C -> Check User exists or not, E -> Exit:"
         read cmd
         if [ "$cmd" == "A" ]; then 
         add_user
@@ -103,6 +130,14 @@ while [ 1 ]; do
         reset_password
 	elif [ "$cmd" == "C" ]; then
         check_user
+	elif [ "$cmd" == "G" ]; then
+        add_group
+	elif [ "$cmd" == "B" ]; then
+        add_user_to_group
+	elif [ "$cmd" == "H" ]; then
+        list_groups
+	elif [ "$cmd" == "F" ]; then
+        delete_group
         elif [ "$cmd" == "E" ]; then
         exit
         else
